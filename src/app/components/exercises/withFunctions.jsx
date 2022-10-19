@@ -3,8 +3,14 @@ import CardWrapper from "../common/Card";
 
 const withFunctions = (Component) => (props) => {
     const isAuth = localStorage.getItem("auth");
-    const onLogin = localStorage.setItem("auth", 1);
-    const onLogOut = localStorage.removeItem("auth");
+    const onLogin = () => {
+        localStorage.setItem("auth", 1);
+        location.reload();
+    };
+    const onLogOut = () => {
+        localStorage.removeItem("auth");
+        location.reload();
+    };
     return (
         <CardWrapper>
             <Component
@@ -12,7 +18,6 @@ const withFunctions = (Component) => (props) => {
                 isAuth={isAuth}
                 onLogin={onLogin}
                 onLogOut={onLogOut}
-                onTag={"проверка"}
             />
         </CardWrapper>
     );
